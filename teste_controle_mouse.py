@@ -28,12 +28,15 @@ def Request_Blink():
 
     auth_token = "lh-Y66OTh4k-_laDnmFeRIOBKyHE5z5O"
     blynk_server = socket.gethostbyname("blynk-cloud.com") # pega o ip automaticamente
-    pinled = 'V0'
-    pin = 'V1'
+    pinled = 'V13'
+    pin = 'V77'
+    
+    #liga o led
+    requests.get('http://'+blynk_server+'/'+auth_token+'/update/'+pinled+'?value=1')
     r = requests.get('http://'+blynk_server+'/'+auth_token+'/get/'+pin)
     print(r.text)
-    r = requests.get('http://'+blynk_server+'/'+auth_token+'/update/'+pinled+'?value=255')
+    
+    
 
-
-#Request_Blink()
-mouse()
+Request_Blink()
+#mouse()

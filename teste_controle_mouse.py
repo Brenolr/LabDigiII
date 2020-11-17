@@ -2,8 +2,10 @@ import pyautogui
 import keyboard
 import requests
 import socket
+import serial
+import re #regx
 
-def mouse():
+def mouse_teclado():
     MOUSE_TIME=0.00
     largura, altura= pyautogui.size()
     MOUSE_MIN_H=largura/40
@@ -36,7 +38,33 @@ def Request_Blink():
     r = requests.get('http://'+blynk_server+'/'+auth_token+'/get/'+pin)
     print(r.text)
     
-    
+def mouse_sensor():
+    MOUSE_TIME=0.00
+    largura, altura= pyautogui.size()
+    MOUSE_MIN_H=largura/40
+    MOUSE_MIN_V=altura/40
+    pyautogui.FAILSAFE = False
+    print(largura, altura)
+    #centraliza
+    pyautogui.moveTo(largura/2, altura/2, duration = 0.5, tween = pyautogui.easeOutQuad)
+    ser = serial.Serial('COM3', 9600)
+    while(not(keyboard.is_pressed('s'))):
+        bruto=str(ser.readline())
+        dist=int(re.sub("\D", "", bruto))
+        print(dist)
+        if (dist<5):
+            pyautogui.move(0, -MOUSE_MIN_V, MOUSE_TIME)
+         
 
-Request_Blink()
+def serial_teste():
+    ser = serial.Serial('COM3', 9600)
+    while(True):
+        bruto=str(ser.readline())
+        char=re.sub("\D", "", bruto)
+        print(int(char))
+
+
+#Request_Blink()
 #mouse()
+#serial_teste()
+mouse_sensor()

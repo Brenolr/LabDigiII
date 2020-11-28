@@ -43,7 +43,7 @@ def mouse_sensor():
     print(largura, altura)
     #centraliza
     pyautogui.moveTo(largura/2, altura/2, duration = 0.5, tween = pyautogui.easeOutQuad)
-    ser = serial.Serial('COM3',115200)
+    ser = serial.Serial('COM5',115200)
     while(not(keyboard.is_pressed('s'))):
         command=get_distances(ser)
         if (command=="A" or keyboard.is_pressed("up arrow") ):

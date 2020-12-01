@@ -1,4 +1,21 @@
-<!DOCTYPE html>
+import json
+
+with open("count.json", "r") as read_file:
+    data = json.load(read_file)
+
+print(data)
+
+up = data['up']
+left = data['left']
+down = data['down']
+right = data['right']
+select = data['select']
+
+print(up, left, down, right, select)
+
+f = open('Dashboard/dashboard_graph.html', 'w')
+
+html_content = f"""<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -147,27 +164,27 @@
                                 <li>
                                     <p>
                                         <span"></span>Mover para cima</p>
-                                    <span id= "up">74</span>
+                                    <span id= "up">{up}</span>
                                 </li>
                                 <li>
                                     <p>
                                         <span"></span>Mover para esquerda</p>
-                                    <span id="left">88</span>
+                                    <span id="left">{left}</span>
                                 </li>
                                 <li>
                                     <p>
                                         <span"></span>Mover para baixo</p>
-                                    <span id= "down">76</span>
+                                    <span id= "down">{down}</span>
                                 </li>
                                 <li>
                                     <p>
                                         <span"></span>Mover para direita</p>
-                                    <span id= "right">72</span>
+                                    <span id= "right">{right}</span>
                                 </li>
                                 <li>
                                     <p>
                                         <span"></span>Selecionar</p>
-                                    <span id= "select">42</span>
+                                    <span id= "select">{select}</span>
                                 </li>
                             </ul>
                         </div>
@@ -213,3 +230,7 @@
 </body>
 
 </html>
+"""
+
+f.write(html_content)
+f.close()

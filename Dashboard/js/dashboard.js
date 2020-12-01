@@ -1,4 +1,4 @@
-(function($) {
+(function ($) {
 
     /* legent font family */
     var ctxFont = "'Quicksand', sans-serif",
@@ -29,7 +29,7 @@
             function getData(i) {
                 return (
                     [chart.config.type === "line" ? datasets[i].borderColor : datasets[0].backgroundColor[i],
-                        chart.config.type === "line" ? datasets[i].label : data.labels[i]
+                    chart.config.type === "line" ? datasets[i].label : data.labels[i]
                     ]);
             }
 
@@ -47,29 +47,29 @@
     }
 
     /* Plugin for piechart */
-    var taxa_de_cancelamento = document.getElementById('taxa_de_cancelamento').value
-    console.log(taxa_de_cancelamento);
+    // var taxa_de_cancelamento = document.getElementById('taxa_de_cancelamento').value
+    // console.log(taxa_de_cancelamento);
 
-    var piePlugin = {
-        beforeDraw: function(chart) {
-            var width = chart.chart.width,
-                height = chart.chart.height,
-                ctx = chart.chart.ctx,
-                p = taxa_de_cancelamento;
+    //     var piePlugin = {
+    //         beforeDraw: function (chart) {
+    //             var width = chart.chart.width,
+    //                 height = chart.chart.height,
+    //                 ctx = chart.chart.ctx,
+    //                 // p = taxa_de_cancelamento;
 
-            ctx.restore();
-            var fontSize = (height / 114).toFixed(2);
-            ctx.font = fontSize + "em Quicksand";
-            ctx.textBaseline = "middle";
+    //                 ctx.restore();
+    //         var fontSize = (height / 114).toFixed(2);
+    //         ctx.font = fontSize + "em Quicksand";
+    //         ctx.textBaseline = "middle";
 
-            var text = p + '%',
-                textX = Math.round((width - ctx.measureText(text).width) / 2),
-                textY = height / 2;
+    //         var text = p + '%',
+    //         textX = Math.round((width - ctx.measureText(text).width) / 2),
+    //         textY = height / 2;
 
-            ctx.fillText(text, textX, textY);
-            ctx.save();
-        }
-    };
+    //         ctx.fillText(text, textX, textY);
+    //         ctx.save();
+    //     }
+    // };
 
 
     /* sale view statistics line chart */
@@ -264,7 +264,7 @@
         console.log("DINHEIRO: " + receita_dinheiro_dia_30);
         console.log("CARTAO: " + receita_transacao_dia_30);
         console.log("TOTAL: " + receita_dia_30);
-        
+
         if (mon == "jan" || mon == "mar" || mon == "mai" || mon == "jul" || mon == "ago" || mon == "out" || mon == "dez") {
             label = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31]
             dadosTotal = [receita_dia_1, receita_dia_2, receita_dia_3, receita_dia_4, receita_dia_5, receita_dia_6, receita_dia_7, receita_dia_8, receita_dia_9, receita_dia_10, receita_dia_11, receita_dia_12, receita_dia_13, receita_dia_14, receita_dia_15, receita_dia_16, receita_dia_17, receita_dia_18, receita_dia_19, receita_dia_20, receita_dia_21, receita_dia_22, receita_dia_23, receita_dia_24, receita_dia_25, receita_dia_26, receita_dia_27, receita_dia_28, receita_dia_29, receita_dia_30, receita_dia_31]
@@ -289,7 +289,7 @@
             data: {
                 labels: label,
                 datasets: [
-                    
+
                     {
                         label: "Cartão",
                         backgroundColor: 'rgba(115, 71, 193,.5)',
@@ -342,15 +342,15 @@
 
 
     /* visit statistics pie chart */
-    if($('#piechart').length){
+    if ($('#piechart').length) {
         var cancelados = document.getElementById('cancelados').value
         var enviados = document.getElementById('enviados').value
-        
+
         var piechart = $('#piechart');
-        var part  = new Chart(piechart, {
+        var part = new Chart(piechart, {
             type: 'doughnut',
             plugins: [piePlugin],
-            data:{
+            data: {
                 datasets: [{
                     data: [cancelados, enviados],
                     backgroundColor: [
@@ -363,7 +363,7 @@
                     "Enviados"
                 ]
             },
-            options:{
+            options: {
                 cutoutPercentage: 75,
                 responsive: true,
                 legend: {
@@ -421,29 +421,29 @@
             data: {
                 labels: months,
                 datasets: [{
-                        label: "2015",
-                        data: [3, 2.9, 2.7, 3.5, 4, 3.8, 3.7, 3.5, 4, 4.5, 4.3, 4.2],
-                        fill: false,
-                        borderColor: '#7347c1',
-                        lineTension: 0,
-                        pointBorderColor: '#7347c1'
-                    },
-                    {
-                        label: "2016",
-                        data: [4, 3.9, 3.7, 4.5, 5, 5.8, 5.1, 4.5, 5.7, 7, 6.25, 5.9],
-                        fill: false,
-                        borderColor: '#0674ec',
-                        lineTension: 0,
-                        pointBorderColor: '#0674ec'
-                    },
-                    {
-                        label: "2019",
-                        data: [5, 5.5, 5.9, 5.5, 5, 4.8, 5.8, 6.5, 6.1, 5.8, 6.7, 7.2],
-                        fill: false,
-                        borderColor: '#62d03a',
-                        lineTension: 0,
-                        pointBorderColor: '#62d03a'
-                    }
+                    label: "2015",
+                    data: [3, 2.9, 2.7, 3.5, 4, 3.8, 3.7, 3.5, 4, 4.5, 4.3, 4.2],
+                    fill: false,
+                    borderColor: '#7347c1',
+                    lineTension: 0,
+                    pointBorderColor: '#7347c1'
+                },
+                {
+                    label: "2016",
+                    data: [4, 3.9, 3.7, 4.5, 5, 5.8, 5.1, 4.5, 5.7, 7, 6.25, 5.9],
+                    fill: false,
+                    borderColor: '#0674ec',
+                    lineTension: 0,
+                    pointBorderColor: '#0674ec'
+                },
+                {
+                    label: "2019",
+                    data: [5, 5.5, 5.9, 5.5, 5, 4.8, 5.8, 6.5, 6.1, 5.8, 6.7, 7.2],
+                    fill: false,
+                    borderColor: '#62d03a',
+                    lineTension: 0,
+                    pointBorderColor: '#62d03a'
+                }
                 ]
             },
 
@@ -456,7 +456,7 @@
                     yAxes: [{
                         ticks: {
                             suggestedMax: 10,
-                            callback: function(value, index, values) {
+                            callback: function (value, index, values) {
                                 return value + 'k';
                             }
                         }

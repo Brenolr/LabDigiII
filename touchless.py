@@ -7,8 +7,11 @@ import re  # regx
 
 
 def main():
-
-    auth = Request_Blink()
+    try:
+        auth = Request_Blink()
+    except:
+        print("Erro de conexão")
+        auth = True
     if(auth == True):
         print("Usuário autenticado")
         mouse_sensor()
@@ -30,6 +33,7 @@ def Request_Blink():
     r = requests.get('http://'+blynk_server+'/'+auth_token+'/get/'+pin)
     bruto = str(r.text)
     lista = re.sub("\D", "", bruto)
+    print(lista)
     char = lista[len(lista)-1]
     print(char)
     if(char == "0"):
@@ -93,17 +97,22 @@ def get_distances(ser):
         elif(char == "E"):
             bruto = str(ser.readline())
             dist.append(["E", int(re.sub("\D", "", bruto))])
+            #print(["E", int(re.sub("\D", "", bruto))])
             getE = True
 
     i = 1
 
     menor = dist[0]
-    while(i < 4):
+    print(dist[0])
+    while(i < 5):
         if((dist[i][1] != 0 and dist[i][1] < menor[1]) or (menor[1] == 0 and dist[i][1] != 0)):
             menor = dist[i]
+        print(dist[i])
         i = i+1
-    # print(menor[1])
-    if(menor[1] <= 10):
+
+    print(menor[0])
+    if(menor[1] <= 7):
+        print( "Menor: " + str(menor[0]))
         return menor[0]
     return False
 
